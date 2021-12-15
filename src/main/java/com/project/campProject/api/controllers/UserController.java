@@ -22,18 +22,12 @@ public class UserController {
             this.userRepository = userRepository;
         } UserRepository übermitteln UserService und UserController verbinden wir UserService.
     */
-    @Autowired
-    private UserService userService;
 
-
-
+    private final UserService userService;
 
 
     public UserController(UserService userService) {
-        super();
         this.userService = userService;
-
-
     }
 
     @GetMapping
@@ -61,14 +55,14 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable Integer userId) {
+    public User getOneUser(@PathVariable Long userId) {
 
         //  return userRepository.findById(userId).orElse(null);
         return userService.getOneUser(userId);
     }
 
     @PutMapping("/{userId}")
-    public User updateOneUser(@PathVariable Integer userId, @RequestBody User newUser) {
+    public User updateOneUser(@PathVariable Long userId, @RequestBody User newUser) {
      /*   Optional<User> user = userRepository.findById(userId);
         if(user.isPresent()){
             User foundUser = user.get();
@@ -84,7 +78,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteOneUser(@PathVariable Integer userId) {
+    public void deleteOneUser(@PathVariable Long userId) {
         // userRepository.deleteById(userId);
         userService.deleteById(userId);
     }

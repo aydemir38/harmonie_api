@@ -1,6 +1,7 @@
 package com.project.campProject.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,17 +14,16 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
-    private int id;
+    private Long id;
 
-   // private int userId;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     User user;
 
-
     String title;
+
     @Lob
     @Column(columnDefinition = "text")
     private String text;

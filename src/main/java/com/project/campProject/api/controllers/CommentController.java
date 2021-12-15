@@ -10,19 +10,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping("/comments")
 public class CommentController {
 
     private final Logger logger = LoggerFactory.getLogger(CommentController.class);
 
-   private CommentService commentService;
+   private final CommentService commentService;
 
     public CommentController (CommentService commentService){
-        super();
         this.commentService = commentService;
     }
+
     @GetMapping( "/comments" )
-    public List<Comment> getAllComments(@RequestParam Optional<Integer> userId){
+    public List<Comment> getAllComments(@RequestParam Optional<Long> userId){
+        logger.info("comment to fetch from userId: {}", userId);
         return commentService.getAllComments(userId);
     }
 
@@ -33,7 +33,7 @@ public class CommentController {
     }
 
     @GetMapping ("/comments/{commentId}")
-    public Comment getOneComment(@PathVariable Integer commentId){
+    public Comment getOneComment(@PathVariable Long commentId){
         return commentService.getOneCommentById(commentId);
     }
 

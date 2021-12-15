@@ -22,13 +22,13 @@ public class CommentService {
     }
 
 
-    public List<Comment> getAllComments(Optional<Integer> userId) {
+    public List<Comment> getAllComments(Optional<Long> userId) {
         if(userId.isPresent())
             return commentRepository.findByUserId(userId.get());
         return commentRepository.findAll();
     }
 
-    public Comment getOneCommentById(Integer commentId) {
+    public Comment getOneCommentById(Long commentId) {
         return (Comment) commentRepository.findById(commentId).orElse(null);
     }
 
