@@ -33,8 +33,8 @@ public class RepositoryTests {
     @Test
     public void whenInsertComment_thenReturnComment() {
         Comment comment = new Comment();
-        comment.setId(1L);
-        comment.setTitle("Comment Title");
+        comment.setId(53L);
+        comment.setTitle("Comment Title SMA");
         comment.setText("Text of comment");
 
         User user = new User(1L,"foo","bar");
@@ -42,6 +42,18 @@ public class RepositoryTests {
 
         Comment comment1 = commentRepository.save(comment);
         assertThat(comment1).isNotNull();
+    }
+
+
+    @Test
+    public void whenFindComment_thenReturnUser() {
+        Optional<Comment> optionalComment = commentRepository.findById(1L);
+        assertThat(optionalComment.isPresent()).isNotNull();
+
+        Comment comment = optionalComment.get();
+        assertThat(comment.getText()).isNotNull();
+
+
     }
 
 

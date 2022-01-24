@@ -1,15 +1,10 @@
 package com.project.campProject.api.controllers;
 
 import com.project.campProject.entities.User;
-import com.project.campProject.repository.UserRepository;
 import com.project.campProject.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/users")
@@ -58,7 +53,7 @@ public class UserController {
     public User getOneUser(@PathVariable Long userId) {
 
         //  return userRepository.findById(userId).orElse(null);
-        return userService.getOneUser(userId);
+        return userService.getOneUserById(userId);
     }
 
     @PutMapping("/{userId}")
